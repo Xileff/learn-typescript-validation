@@ -21,5 +21,26 @@ describe('zod', () => {
 
     const price = priceSchema.parse(10000);
     expect(price).toStrictEqual(10000);
+
+    // try {
+    //   priceSchema.parse(1);
+    // } catch (err) {
+    //   console.info(err);
+    // }
+  });
+
+  it('should support primitive data type conversion', () => {
+    const usernameSchema = z.coerce.string().min(8).max(20);
+    const isAdminSchema = z.coerce.boolean(); // does not really work well, 'false' will become true
+    const priceSchema = z.coerce.number().min(1000).max(1000000);
+
+    const username = usernameSchema.parse(12345678);
+    expect(username).toBe('12345678');
+
+    const isAdmin = isAdminSchema.parse('false');
+    expect(isAdmin).toStrictEqual(true);
+
+    const price = priceSchema.parse('1000');
+    expect(price).toStrictEqual(1000);
   });
 });
