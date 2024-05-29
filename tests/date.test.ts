@@ -8,9 +8,9 @@ describe('Zod date', () => {
       .max(new Date(2020, 0, 1));
 
     const birthDate = dateSchema.parse('2002-12-31');
-    console.info(dateSchema.parse(birthDate)); // 2002-12-31
+    // console.info(dateSchema.parse(birthDate)); // 2002-12-31
 
     const birthDate1 = dateSchema.parse(new Date(2002, 2, 21)); // month 0-11, date starts from 2 (date is weird)
-    console.info(dateSchema.parse(birthDate1)); // 2002-03-20
+    // console.info(dateSchema.parse(birthDate1)); // 2002-03-20
   });
 });
